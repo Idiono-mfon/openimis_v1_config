@@ -55,14 +55,14 @@ services:
     restart: always
     networks:
       openimis-net:
-         ipv4_address: 172.20.${IP_SUB:-20}.12
+        ipv4_address: 172.20.${IP_SUB:-20}.12
 
   frontend:
     container_name: ${PROJECT_NAME:-openimis}-frontend
     build:
       context: https://github.com/openimis/openimis-fe_js.git#${FE_BRANCH:-develop}
       args:
-         OPENIMIS_CONF_JSON: ${OPENIMIS_FE_CONF_JSON}
+        OPENIMIS_CONF_JSON: ${OPENIMIS_FE_CONF_JSON}
     command: serve -s build
     environment:
       - PORT=5000
@@ -111,7 +111,7 @@ services:
     environment: *backend-env
     networks:
       openimis-net:
-         ipv4_address: 172.20.${IP_SUB:-20}.15
+        ipv4_address: 172.20.${IP_SUB:-20}.15
 
   rabbitmq:
     container_name: ${PROJECT_NAME:-openimis}-rabbitmq
@@ -119,12 +119,12 @@ services:
     restart: always
     networks:
       openimis-net:
-         ipv4_address: 172.20.${IP_SUB:-20}.16
+        ipv4_address: 172.20.${IP_SUB:-20}.16
 
   restapi:
     container_name: ${PROJECT_NAME:-openimis}-restapi
     build:
-      context:  https://github.com/openimis/rest_api_c-sharp.git#${RESTAPI_BRANCH:-develop}
+      context: https://github.com/openimis/rest_api_c-sharp.git#${RESTAPI_BRANCH:-develop}
       args:
         BUILD-FLAVOUR: ${RESTAPI_BUILD_FLAVOUR:-Release}
     volumes:
@@ -137,7 +137,7 @@ services:
         condition: service_healthy
     networks:
       openimis-net:
-         ipv4_address: 172.20.${IP_SUB:-20}.17
+        ipv4_address: 172.20.${IP_SUB:-20}.17
 
 volumes:
   database:
